@@ -1,0 +1,73 @@
+<Defaults>
+	<InputField class='inputName' resizeTextForBestFit='True'
+		onEndEdit='SetNameTime' resizeTextMaxSize='60'/>
+	<Text class='bestFitT' resizeTextForBestFit='True'
+		resizeTextMaxSize='60'/>
+	<InputField class='inputValue' resizeTextForBestFit='True'
+		onEndEdit='SetValueLight' resizeTextMaxSize='60'/>
+	<Cell dontUseTableCellBackground='true'/>
+</Defaults>
+
+<Panel position='0 0 -21' visibility='Black'>
+	<Button onClick='PanelTool' image='uiGear' height='30' width='30' offsetXY='935 85'/>
+	<Button id='panelClose' onClick='Reset' image='uiClose' height='25' width='25' offsetXY='965 85' active='false'/>
+	<VerticalScrollView id='panelTool' height='200' width='800'
+		color='black' offsetXY='0 205' active='false' verticalScrollbarVisibility='AutoHideAndExpandViewport'>
+		<TableLayout id='TLSet' height='200' cellSpacing='2' rowBackgroundColor='#ffffff'>
+			<Row preferredHeight='35' dontUseTableRowBackground='true'>
+				<Cell columnSpan='2' dontUseTableCellBackground='true'>
+				</Cell>
+				<Cell columnSpan='6' dontUseTableCellBackground='true'>
+					<Button text='Add new month' resizeTextForBestFit='true'
+						resizeTextMaxSize='50' color='#44944a' onClick='SetNewMonth'/>
+				</Cell>
+				<Cell columnSpan='2' dontUseTableCellBackground='true'>
+				</Cell>
+			</Row>
+			<Row preferredHeight='40'>
+				<Cell columnSpan='5' dontUseTableCellBackground='true'>
+				  <Text class='bestFitT' text='Name' />
+				</Cell>
+				<Cell columnSpan='1'>
+				  <Text class='bestFitT' text='R' />
+				</Cell>
+				<Cell columnSpan='1'>
+				  <Text class='bestFitT' text='G' />
+				</Cell>
+				<Cell columnSpan='1'>
+				  <Text class='bestFitT' text='B' />
+				</Cell>
+				<Cell columnSpan='1'>
+				  <Text class='bestFitT' text='light' />
+				</Cell>
+				<Cell columnSpan='1'>
+				  <Text class='bestFitT' text='ambient' />
+				</Cell>
+			</Row>
+			<NewRowS />
+		</TableLayout>
+	</VerticalScrollView>
+</Panel>
+
+<Panel position='0 0 -21' height='190' width='1830'>
+	<TableLayout cellSpacing='5' rowBackgroundColor='#6f828a'>
+		<Row>
+			<Cell columnSpan='14'>
+				<Text class='bestFitT' text='Сейчас' />
+			</Cell>
+		</Row>
+		<Row>
+			<Cell columnSpan='1'>
+				<Button image='uiMinus' onClick='MinusTime' />
+			</Cell>
+			<!-- -->
+			<Cell columnSpan='12'>
+				<Text id='nameT' class='bestFitT' text='12:00' />
+			</Cell>
+			<!-- -->
+			<Cell columnSpan='1'>
+				<Button image='uiPlus' onClick='PlusTime' />
+			</Cell>
+		</Row>
+	</TableLayout>
+</Panel>

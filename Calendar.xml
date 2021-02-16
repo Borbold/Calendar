@@ -1,0 +1,87 @@
+<Defaults>
+	<InputField class='inputName' resizeTextForBestFit='True'
+		onEndEdit='SetNameMonth' resizeTextMaxSize='60'/>
+	<Text class='bestFitT' resizeTextForBestFit='True'
+		resizeTextMaxSize='60'/>
+	<InputField class='inputValue' resizeTextForBestFit='True'
+		onEndEdit='SetMaxCountDays' resizeTextMaxSize='60'/>
+	<Cell dontUseTableCellBackground='true'/>
+</Defaults>
+
+<Panel position='0 0 -21' visibility='Black'>
+	<Button onClick='PanelTool' image='uiGear' height='30' width='30' offsetXY='935 85'/>
+	<Button id='panelClose' onClick='Reset' image='uiClose' height='25' width='25' offsetXY='965 85' active='false'/>
+	<VerticalScrollView id='panelTool' height='200' width='800'
+		color='black' offsetXY='0 205' active='false' verticalScrollbarVisibility='AutoHideAndExpandViewport'>
+		<TableLayout id='TLSet' height='200' cellSpacing='2' rowBackgroundColor='#ffffff'>
+			<Row preferredHeight='35' dontUseTableRowBackground='true'>
+				<Cell columnSpan='2' dontUseTableCellBackground='true'>
+				</Cell>
+				<Cell columnSpan='6' dontUseTableCellBackground='true'>
+					<Button text='Add new month' resizeTextForBestFit='true'
+						resizeTextMaxSize='50' color='#44944a' onClick='SetNewMonth'/>
+				</Cell>
+				<Cell columnSpan='2' dontUseTableCellBackground='true'>
+				</Cell>
+			</Row>
+			<NewRowS />
+		</TableLayout>
+	</VerticalScrollView>
+</Panel>
+
+<Panel position='0 0 -21' height='190' width='1830'>
+	<TableLayout cellSpacing='5' rowBackgroundColor='#6f828a'>
+		<Row>
+			<Cell columnSpan='10'>
+				<Text class='bestFitT' text='Месяц' />
+			</Cell>
+			<Cell columnSpan='7'>
+				<Text class='bestFitT' text='День' />
+			</Cell>
+			<Cell columnSpan='7'>
+				<Text class='bestFitT' text='Время суток' />
+			</Cell>
+		</Row>
+		<Row>
+			<Cell columnSpan='1'>
+				<Button image='uiMinus' onClick='MinusMonth' />
+			</Cell>
+			<!-- -->
+			<Cell columnSpan='8'>
+				<Text id='nameT' class='bestFitT' text='Январь' />
+			</Cell>
+			<!-- -->
+			<Cell columnSpan='1'>
+				<Button image='uiPlus' onClick='PlusMonth' />
+			</Cell>
+			<!--                                     -->
+			<Cell columnSpan='1'>
+				<Button image='uiMinus' onClick='MinusValueDay' />
+			</Cell>
+			<!-- -->
+			<Cell columnSpan='5'>
+				<Text id='valueD' class='bestFitT' text='1' />
+			</Cell>
+			<!-- -->
+			<Cell columnSpan='1'>
+				<Button image='uiPlus' onClick='PlusValueDay' />
+			</Cell>
+			<!--                                     -->
+			<Cell columnSpan='9'>
+				<Dropdown text='Рассвет' id='selectionTimeDay' onValueChanged='DropdownChange' fontSize='45' height='75' itemHeight='85'
+					itemBackgroundColors='black' itemTextColor='white' dropdownBackgroundColor='#808080'>
+					<Option>Рассвет</Option>
+					<Option>Раннее утро</Option>
+					<Option>Утро</Option>
+					<Option>Позднее утро</Option>
+					<Option>Ранний день</Option>
+					<Option>День</Option>
+					<Option>Поздний день</Option>
+					<Option>Закат</Option>
+					<Option>Сумерки</Option>
+					<Option>Ночь</Option>
+				</Dropdown>
+			</Cell>
+		</Row>
+	</TableLayout>
+</Panel>
