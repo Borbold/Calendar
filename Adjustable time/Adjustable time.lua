@@ -47,7 +47,9 @@ end
 
 function SetNewMonth(_, _, isLoad)
   if(not isLoad) then
-    fildForTime[tostring(countTime)] = {name = "", R = 0, G = 0, B = 0, light = 0, ambient = 0}
+    fildForTime[tostring(countTime)] = {name = "", R = 160, G = 160, B = 160, light = 1,
+      ambient = 1, amb_type = 1, gr_R = 160, gr_G = 160, gr_B = 160
+    }
     countTime = countTime + 1
   end
 
@@ -61,15 +63,15 @@ function SetNewMonth(_, _, isLoad)
           <InputField id='name]]..i..[[' class='inputName' text=']]..v.name..[['/>
         </Cell>
         <Cell columnSpan='1'>
-          <InputField id='R]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
+          <InputField id='LiR]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
             text=']]..v.R..[['/>
         </Cell>
         <Cell columnSpan='1'>
-          <InputField id='G]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
+          <InputField id='LiG]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
             text=']]..v.G..[['/>
         </Cell>
         <Cell columnSpan='1'>
-          <InputField id='B]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
+          <InputField id='LiB]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
             text=']]..v.B..[['/>
         </Cell>
         <Cell columnSpan='1'>
@@ -79,6 +81,23 @@ function SetNewMonth(_, _, isLoad)
         <Cell columnSpan='1'>
           <InputField id='ambient]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Decimal'
             text=']]..v.ambient..[['/>
+        </Cell>
+
+        <Cell columnSpan='1'>
+          <InputField id='ambType]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
+            text=']]..v.amb_type..[['/>
+        </Cell>
+        <Cell columnSpan='1'>
+          <InputField id='grR]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
+            text=']]..v.gr_R..[['/>
+        </Cell>
+        <Cell columnSpan='1'>
+          <InputField id='grG]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
+            text=']]..v.gr_G..[['/>
+        </Cell>
+        <Cell columnSpan='1'>
+          <InputField id='grB]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
+            text=']]..v.gr_B..[['/>
         </Cell>
       </Row>
     ]]
@@ -138,12 +157,18 @@ function SetTypeTime(id)
   Wait.Frames(UpdateSave, 5)
 end
 function SetLight(number)
+  Lighting.ambient_type = fildForTime[number].amb_type or 1
   Lighting.ambient_intensity = fildForTime[number].ambient or 1
   Lighting.light_intensity = fildForTime[number].light or 1
   Lighting.setLightColor({
     (fildForTime[number].R or 160) / 255,
     (fildForTime[number].G or 160) / 255,
     (fildForTime[number].B or 160) / 255
+  })
+  Lighting.setAmbientGroundColor({
+    (fildForTime[number].gr_R or 160) / 255,
+    (fildForTime[number].gr_G or 160) / 255,
+    (fildForTime[number].gr_B or 160) / 255
   })
   Lighting.apply()
 end
@@ -155,14 +180,14 @@ function SetNameTime(_, input, id)
 end
 
 function SetValueLight(_, input, id)
-  if(id:find("R")) then
-    id = id:sub(2, #id)
+  if(id:find("LiR")) then
+    id = id:sub(4, #id)
     fildForTime[id].R = tonumber(input)
-  elseif(id:find("G")) then
-    id = id:sub(2, #id)
+  elseif(id:find("LiG")) then
+    id = id:sub(4, #id)
     fildForTime[id].G = tonumber(input)
-  elseif(id:find("B")) then
-    id = id:sub(2, #id)
+  elseif(id:find("LiB")) then
+    id = id:sub(4, #id)
     fildForTime[id].B = tonumber(input)
   elseif(id:find("light")) then
     id = id:sub(6, #id)
@@ -170,6 +195,18 @@ function SetValueLight(_, input, id)
   elseif(id:find("ambient")) then
     id = id:sub(8, #id)
     fildForTime[id].ambient = tonumber(input)
+  elseif(id:find("ambType")) then
+    id = id:sub(8, #id)
+    fildForTime[id].amb_type = tonumber(input)
+  elseif(id:find("grR")) then
+    id = id:sub(4, #id)
+    fildForTime[id].gr_R = tonumber(input)
+  elseif(id:find("grG")) then
+    id = id:sub(4, #id)
+    fildForTime[id].gr_G = tonumber(input)
+  elseif(id:find("grB")) then
+    id = id:sub(4, #id)
+    fildForTime[id].gr_B = tonumber(input)
   end
   Wait.Frames(|| UpdateSave(), 5)
 end
