@@ -12,7 +12,7 @@ end
 function onLoad(savedData)
   countMonth, selectedMonth, selectedDay = 1, 1, 1
   fildForMonth = {}
-  Wait.Frames(|| Confer(savedData), 15)
+  Wait.time(|| Confer(savedData), 0.5)
 end
 function Confer(savedData)
   originalXml = self.UI.getXml()
@@ -35,7 +35,7 @@ function PanelTool()
     self.UI.hide("panelTool")
     self.UI.hide("panelClose")
   end
-  Wait.Frames(UpdateSave, 5)
+  Wait.time(UpdateSave, 0.2)
 end
 
 function PanelTool2()
@@ -44,7 +44,7 @@ function PanelTool2()
   else
     self.UI.hide("panelTool2")
   end
-  Wait.Frames(UpdateSave, 5)
+  Wait.time(UpdateSave, 0.2)
 end
 
 function SetNewMonth(_, _, isLoad)
@@ -81,8 +81,8 @@ function SetNewMonth(_, _, isLoad)
   startXml = startXml .. newType .. endXml
   self.UI.setXml(startXml)
   EnlargeHeightPanel()
-  Wait.Frames(|| SetTypeMonthLoad(), 5)
-  Wait.Frames(|| UpdateSave(), 7)
+  Wait.time(|| SetTypeMonthLoad(), 0.2)
+  Wait.time(|| UpdateSave(), 0.3)
 end
 
 function SetTypeMonthLoad()
@@ -99,8 +99,8 @@ function EnlargeHeightPanel()
   if(countMonth > 4) then
     --preferredHeight=40 cellSpacing='2'
     local newHeightPanel = countMonth*40 + 2
-    Wait.Frames(|| self.UI.setAttribute("TLSet", "height", newHeightPanel), 5)
-    Wait.Frames(|| self.UI.setAttribute("TLUse", "height", newHeightPanel), 5)
+    Wait.time(|| self.UI.setAttribute("TLSet", "height", newHeightPanel), 0.2)
+    Wait.time(|| self.UI.setAttribute("TLUse", "height", newHeightPanel), 0.2)
   end
 end
 
@@ -122,7 +122,7 @@ function SetTypeMonth(id)
     self.UI.setAttribute("nameT", "id", "nameT" .. id)
   end
   selectedMonth = tonumber(id)
-  Wait.Frames(UpdateSave, 5)
+  Wait.time(UpdateSave, 0.2)
 end
 
 function PlusValueDay()
@@ -148,19 +148,19 @@ function SetCountDays(_, max, value)
     selectedDay = tonumber(value)
     self.UI.setAttribute("valueD", "text", value)
   end
-  Wait.Frames(|| UpdateSave(), 5)
+  Wait.time(|| UpdateSave(), 0.2)
 end
 
 function SetNameMonth(_, input, id)
   id = id:sub(5, #id)
   fildForMonth[id].name = input
-  Wait.Frames(|| UpdateSave(), 5)
+  Wait.time(|| UpdateSave(), 0.2)
 end
 
 function SetMaxCountDays(_, input, id)
   id = id:sub(6, #id)
   fildForMonth[id].value = tonumber(input)
-  Wait.Frames(|| UpdateSave(), 5)
+  Wait.time(|| UpdateSave(), 0.2)
 end
 
 function Reset()

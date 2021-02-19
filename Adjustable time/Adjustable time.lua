@@ -11,7 +11,7 @@ end
 function onLoad(savedData)
   countTime, selectedTime = 1, 1
   fildForTime = {}
-  Wait.Frames(|| Confer(savedData), 15)
+  Wait.time(|| Confer(savedData), 0.5)
 end
 function Confer(savedData)
   originalXml = self.UI.getXml()
@@ -33,7 +33,7 @@ function PanelTool()
     self.UI.hide("panelTool")
     self.UI.hide("panelClose")
   end
-  Wait.Frames(UpdateSave, 5)
+  Wait.time(UpdateSave, 0.2)
 end
 
 function PanelTool2()
@@ -42,7 +42,7 @@ function PanelTool2()
   else
     self.UI.hide("panelTool2")
   end
-  Wait.Frames(UpdateSave, 5)
+  Wait.time(UpdateSave, 0.2)
 end
 
 function SetNewMonth(_, _, isLoad)
@@ -114,8 +114,8 @@ function SetNewMonth(_, _, isLoad)
   startXml = startXml .. newType .. endXml
   self.UI.setXml(startXml)
   EnlargeHeightPanel()
-  Wait.Frames(|| SetTypeTimeLoad(), 5)
-  Wait.Frames(|| UpdateSave(), 7)
+  Wait.time(|| SetTypeTimeLoad(), 0.2)
+  Wait.time(|| UpdateSave(), 0.3)
 end
 
 function SetTypeTimeLoad()
@@ -130,8 +130,8 @@ function EnlargeHeightPanel()
   if(countTime > 3) then
     --preferredHeight=40 cellSpacing='2'
     local newHeightPanel = countTime*40 + 42
-    Wait.Frames(|| self.UI.setAttribute("TLSet", "height", newHeightPanel), 5)
-    Wait.Frames(|| self.UI.setAttribute("TLUse", "height", newHeightPanel), 5)
+    Wait.time(|| self.UI.setAttribute("TLSet", "height", newHeightPanel), 0.2)
+    Wait.time(|| self.UI.setAttribute("TLUse", "height", newHeightPanel), 0.3)
   end
 end
 
@@ -154,7 +154,7 @@ function SetTypeTime(id)
   end
   selectedTime = tonumber(id)
   SetLight(tostring(id))
-  Wait.Frames(UpdateSave, 5)
+  Wait.time(UpdateSave, 0.2)
 end
 function SetLight(number)
   Lighting.ambient_type = fildForTime[number].amb_type or 1
@@ -176,7 +176,7 @@ end
 function SetNameTime(_, input, id)
   id = id:sub(5, #id)
   fildForTime[id].name = input
-  Wait.Frames(|| UpdateSave(), 5)
+  Wait.time(|| UpdateSave(), 0.2)
 end
 
 function SetValueLight(_, input, id)
@@ -208,7 +208,7 @@ function SetValueLight(_, input, id)
     id = id:sub(4, #id)
     fildForTime[id].gr_B = tonumber(input)
   end
-  Wait.Frames(|| UpdateSave(), 5)
+  Wait.time(|| UpdateSave(), 0.2)
 end
 
 function Reset()
