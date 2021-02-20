@@ -24,7 +24,7 @@ function Confer(savedData)
     selectedDay = loadedData.selectedDay or 1
     fildForMonth = loadedData.fildForMonth or {}
     currentYear = loadedData.currentYear or 0
-    SetNewMonth(_, _, not (countMonth < 2))
+    SetNewMonth(_, _, not (countMonth < 2), true)
   end
 end
 
@@ -48,8 +48,8 @@ function PanelTool2()
   Wait.time(UpdateSave, 0.2)
 end
 
-function SetNewMonth(_, _, isLoad)
-  if(not isLoad) then
+function SetNewMonth(_, _, isLoadFirst, isLoad)
+  if(not isLoadFirst) then
     fildForMonth[tostring(countMonth)] = {name = "", value = 0}
     countMonth = countMonth + 1
   end
@@ -82,18 +82,14 @@ function SetNewMonth(_, _, isLoad)
   startXml = startXml .. newType .. endXml
   self.UI.setXml(startXml)
   EnlargeHeightPanel()
-  Wait.time(|| SetTypeMonthLoad(), 0.2)
-  Wait.time(|| UpdateSave(), 0.3)
+  Wait.time(|| SetTypeMonthLoad(isLoad), 0.2)
+  Wait.time(|| SetCountDays(_, _, selectedDay), 0.25)
+  Wait.time(|| ChangeYears(_, currentYear), 0.3)
+  Wait.time(|| UpdateSave(), 0.35)
 end
 
-function SetTypeMonthLoad()
-  self.UI.setValue("valueD", selectedDay)
-
-  for i,v in pairs(fildForMonth) do
-    if(tonumber(i) == selectedMonth) then
-      SetTypeMonth(i)
-    end
-  end
+function SetTypeMonthLoad(isLoad)
+  SetTypeMonth(tostring(selectedMonth), isLoad)
 end
 
 function EnlargeHeightPanel()
@@ -121,7 +117,7 @@ function MinusMonth()
   end
   SetTypeMonth(selectedMonth - 1)
 end
-function SetTypeMonth(id)
+function SetTypeMonth(id, isLoad)
   selectedMonth = tonumber(selectedMonth)
   if(selectedMonth > 0) then
     self.UI.setAttribute("nameT", "text", fildForMonth[tostring(id)].name)
@@ -131,7 +127,7 @@ function SetTypeMonth(id)
     self.UI.setAttribute("nameT", "id", "nameT" .. id)
   end
   selectedMonth = tonumber(id)
-  SetCountDays(nil, nil, 1)
+  if(not isLoad) then SetCountDays(_, _, 1) end
   Wait.time(UpdateSave, 0.2)
 end
 
