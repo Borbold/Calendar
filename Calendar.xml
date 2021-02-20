@@ -32,13 +32,16 @@
 <Panel position='0 0 -21' height='190' width='1830'>
 	<TableLayout cellSpacing='5' rowBackgroundColor='#6f828a'>
 		<Row>
-			<Cell columnSpan='10'>
+			<Cell columnSpan='12'>
 				<Text class='bestFitT' text='Месяц' />
 			</Cell>
-			<Cell columnSpan='7'>
-				<Text class='bestFitT' text='День' />
+			<Cell columnSpan='4'>
+				<Text class='bestFitT' alignment='MiddleRight' text='День' />
 			</Cell>
-			<Cell columnSpan='7'>
+			<Cell columnSpan='6'>
+				<Text class='bestFitT' text='Год' />
+			</Cell>
+			<Cell columnSpan='2'>
 				<Text class='bestFitT' text='Время суток' />
 			</Cell>
 		</Row>
@@ -47,7 +50,7 @@
 				<Button image='uiMinus' onClick='MinusMonth' />
 			</Cell>
 			<!-- -->
-			<Cell columnSpan='8'>
+			<Cell columnSpan='11'>
 				<Text id='nameT' class='bestFitT' text='Январь' />
 			</Cell>
 			<!-- -->
@@ -59,7 +62,7 @@
 				<Button image='uiMinus' onClick='MinusValueDay' />
 			</Cell>
 			<!-- -->
-			<Cell columnSpan='5'>
+			<Cell columnSpan='2'>
 				<Text id='valueD' class='bestFitT' text='1' />
 			</Cell>
 			<!-- -->
@@ -67,9 +70,14 @@
 				<Button image='uiPlus' onClick='PlusValueDay' />
 			</Cell>
 			<!--                                     -->
-			<Cell columnSpan='9'>
+			<Cell columnSpan='4'>
+				<InputField id='idYear' resizeTextForBestFit='True' resizeTextMaxSize='60'
+					text='0' onEndEdit='ChangeYears' colors='#6f828a' characterValidation='Integer'/>
+			</Cell>
+			<!--                                     -->
+			<Cell columnSpan='5'>
 				<Dropdown text='Рассвет' id='selectionTimeDay' onValueChanged='DropdownChange' fontSize='45' height='75' itemHeight='85'
-					itemBackgroundColors='black' itemTextColor='white' dropdownBackgroundColor='#808080'>
+					itemBackgroundColors='#6f828a' colors='#6f828a'>
 					<Option>Рассвет</Option>
 					<Option>Раннее утро</Option>
 					<Option>Утро</Option>

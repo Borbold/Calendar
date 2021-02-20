@@ -3,7 +3,7 @@
   local dataToSave = {
     ["countMonth"] = countMonth, ["changeXml"] = changeXml,
     ["fildForMonth"] = fildForMonth, ["selectedMonth"] = selectedMonth,
-    ["selectedDay"] = selectedDay
+    ["selectedDay"] = selectedDay, ["currentYear"] = currentYear
   }
   local savedData = JSON.encode(dataToSave)
   self.script_state = savedData
@@ -23,6 +23,7 @@ function Confer(savedData)
     selectedMonth = loadedData.selectedMonth or 1
     selectedDay = loadedData.selectedDay or 1
     fildForMonth = loadedData.fildForMonth or {}
+    currentYear = loadedData.currentYear or 0
     SetNewMonth(_, _, not (countMonth < 2))
   end
 end
@@ -105,11 +106,19 @@ function EnlargeHeightPanel()
 end
 
 function PlusMonth()
-  if(selectedMonth + 1 >= countMonth) then SetTypeMonth(1) return end
+  if(selectedMonth + 1 >= countMonth) then
+    SetTypeMonth(1)
+    ChangeYears(_, currentYear + 1)
+    return
+  end
   SetTypeMonth(selectedMonth + 1)
 end
 function MinusMonth()
-  if(selectedMonth - 1 < 1) then SetTypeMonth(countMonth) return end
+  if(selectedMonth - 1 < 1) then
+    SetTypeMonth(countMonth - 1)
+    ChangeYears(_, currentYear - 1)
+    return
+  end
   SetTypeMonth(selectedMonth - 1)
 end
 function SetTypeMonth(id)
@@ -122,6 +131,7 @@ function SetTypeMonth(id)
     self.UI.setAttribute("nameT", "id", "nameT" .. id)
   end
   selectedMonth = tonumber(id)
+  SetCountDays(nil, nil, 1)
   Wait.time(UpdateSave, 0.2)
 end
 
@@ -168,6 +178,16 @@ function Reset()
   fildForMonth = {}
   self.UI.setXml(originalXml)
   UpdateSave(true)
+end
+
+function ChangeYears(_, input)
+  if(input ~= "") then
+    currentYear = tonumber(input)
+    self.UI.setAttribute("idYear", "text", currentYear)
+    UpdateSave()
+  else
+    self.UI.setAttribute("idYear", "text", currentYear or 0)
+  end
 end
 
 function RebuildAssets()
