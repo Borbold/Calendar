@@ -59,7 +59,7 @@ function SetNewMonth(_, _, isLoad)
   for i,v in pairs(fildForTime) do
     newType = newType .. [[
       <Row preferredHeight='40'>
-        <Cell columnSpan='5' dontUseTableCellBackground='true'>
+        <Cell columnSpan='4' dontUseTableCellBackground='true'>
           <InputField id='name]]..i..[[' class='inputName' text=']]..v.name..[['/>
         </Cell>
         <Cell columnSpan='1'>
@@ -99,6 +99,10 @@ function SetNewMonth(_, _, isLoad)
           <InputField id='grB]]..i..[[' class='inputValue' color='#44944a' placeholder='value' characterValidation='Integer'
             text=']]..v.gr_B..[['/>
         </Cell>
+
+        <Cell columnSpan='1'>
+          <Button id='choice]]..i..[[' onClick='ChangeLight' class='bestFitB' text='G'/>
+        </Cell>
       </Row>
     ]]
   end
@@ -116,6 +120,11 @@ function SetNewMonth(_, _, isLoad)
   EnlargeHeightPanel()
   Wait.time(|| SetTypeTimeLoad(), 0.2)
   Wait.time(|| UpdateSave(), 0.3)
+end
+
+function ChangeLight(_, _, id)
+  id = id:sub(7, #id)
+  SetLight(tostring(id))
 end
 
 function SetTypeTimeLoad()

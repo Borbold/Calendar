@@ -6,6 +6,7 @@
 	<InputField class='inputValue' resizeTextForBestFit='True'
 		onEndEdit='SetValueLight' resizeTextMaxSize='60'/>
 	<Cell dontUseTableCellBackground='true'/>
+	<Button class='bestFitB' resizeTextForBestFit='True' resizeTextMaxSize='60'/>
 </Defaults>
 
 <Panel position='0 0 -21' visibility='Black'>
@@ -18,14 +19,14 @@
 				<Cell columnSpan='2' dontUseTableCellBackground='true'>
 				</Cell>
 				<Cell columnSpan='10' dontUseTableCellBackground='true'>
-					<Button text='Add new month' resizeTextForBestFit='true'
+					<Button text='Add new time' resizeTextForBestFit='true'
 						resizeTextMaxSize='50' color='#44944a' onClick='SetNewMonth'/>
 				</Cell>
 				<Cell columnSpan='2' dontUseTableCellBackground='true'>
 				</Cell>
 			</Row>
 			<Row preferredHeight='40'>
-				<Cell columnSpan='5' dontUseTableCellBackground='true'>
+				<Cell columnSpan='4' dontUseTableCellBackground='true'>
 				  <Text class='bestFitT' text='Name' />
 				</Cell>
 				<Cell columnSpan='1'>
@@ -55,6 +56,10 @@
 				</Cell>
 				<Cell columnSpan='1'>
 				  <Text class='bestFitT' text='ground B' />
+				</Cell>
+				
+				<Cell columnSpan='1'>
+				  <Text class='bestFitT' text='Change' />
 				</Cell>
 			</Row>
 			<NewRowS />

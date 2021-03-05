@@ -33,7 +33,7 @@
 	<TableLayout cellSpacing='5' rowBackgroundColor='#6f828a'>
 		<Row>
 			<Cell columnSpan='12'>
-				<Text class='bestFitT' text='Месяц' />
+				<Text class='bestFitT' text='Месяц' alignment='MiddleLeft' />
 			</Cell>
 			<Cell columnSpan='4'>
 				<Text class='bestFitT' alignment='MiddleRight' text='День' />
@@ -51,7 +51,7 @@
 			</Cell>
 			<!-- -->
 			<Cell columnSpan='11'>
-				<Text id='nameT' class='bestFitT' text='Январь' />
+				<Text id='nameT' class='bestFitT' text='Январь' alignment='MiddleLeft' />
 			</Cell>
 			<!-- -->
 			<Cell columnSpan='1'>
