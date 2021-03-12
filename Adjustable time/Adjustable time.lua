@@ -124,7 +124,8 @@ end
 
 function ChangeLight(_, _, id)
   id = id:sub(7, #id)
-  SetLight(tostring(id))
+  selectedTime = tonumber(id)
+  SetTypeTime(tostring(id))
 end
 
 function SetTypeTimeLoad()
